@@ -1,0 +1,192 @@
+* {
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  font-family: Inter;
+  color: #f0f0f0;
+}
+
+body {
+  min-height: 100vh;
+  background: hsl(0, 0%, 8%);
+  color: #a2a5b3;
+  align-content: center;
+}
+
+h1 {
+  color: white;
+}
+
+.card {
+  margin: 0 auto;
+  padding: 2em;
+  width: 300px;
+  background: hsl(0, 0%, 12%);
+  text-align: center;
+  border-radius: 10px;
+  position: relative;
+}
+
+@property --angle {
+  syntax: "<angle>";
+  initial-value: 0deg;
+  inherits: false;
+}
+
+.card::after,
+.card::before {
+  content: '';
+  position: absolute;
+  height: 100%;
+  width: 100%;
+  background-image: conic-gradient(from var(--angle), #ff4545, #00ff99, #006aff, #ff0095, #ff4545);
+  top: 50%;
+  left: 50%;
+  translate: -50% -50%;
+  z-index: -1;
+  padding: 3px;
+  border-radius: 10px;
+  animation: 3s spin linear infinite;
+}
+
+.card::before {
+  filter: blur(1.5rem);
+  opacity: 0.5;
+}
+
+@keyframes spin {
+  from {
+    --angle: 0deg;
+  }
+
+  to {
+    --angle: 360deg;
+  }
+}
+
+/* Hover effect for the card */
+.card:hover {
+  background: #1f1f1f;
+  transform: ease;
+  box-shadow:
+    0 0 25px rgba(0, 255, 255, 0.4),
+    0 0 50px rgba(255, 0, 255, 0.3);
+  transition: transform 0.4s ease, box-shadow 0.4s ease;
+}
+
+/* Optional: make border glow stronger without brightening inside */
+.card:hover::before,
+.card:hover::after {
+
+  filter: blur(16px);
+  animation-duration: 3s;
+  /* speed up border rotation */
+  mix-blend-mode: normal;
+  /* ensures glow doesn't mix with card bg */
+}
+
+
+.card-image {
+  width: 120px;
+  height: 120px;
+  border-radius: 50%;
+  overflow: hidden;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  margin: 0 auto 20px;
+  background: linear-gradient(135deg, #ff00ff, #00ffff);
+  box-shadow: 0 0 30px rgba(255, 0, 255, 0.25);
+  position: relative;
+  z-index: 4;
+}
+
+.card-image img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+
+h2 {
+  color: #ffffff;
+  font-size: 28px;
+  font-weight: 700;
+  margin-bottom: 4px;
+  text-align: center;
+}
+
+p {
+  color: hsl(75, 94%, 57%);
+  text-align: center;
+  margin: 0 0 8px 0;
+  font-size: 14px;
+  font-weight: 600;
+}
+
+p:last-of-type {
+  color: hsl(0, 0%, 100%);
+  font-style: italic;
+  font-size: 14px;
+  font-weight: 400;
+  margin: 24px 0 24px 0;
+}
+
+.social-links {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+}
+
+.social-links a {
+  background: hsl(0, 0%, 20%);
+  color: #ffffff;
+  text-decoration: none;
+  padding: 12px 20px;
+  border-radius: 10px;
+  text-align: center;
+  border: 1px solid rgba(255, 255, 255, 0.1);
+  transition: all 0.3s ease;
+}
+
+.social-links a:hover {
+  background: hsl(75, 94%, 57%);
+  color: hsl(0, 0%, 20%);
+  transform: translateY(-2px);
+}
+
+@media (max-width:360px) {
+  .card {
+    padding: 20px;
+  }
+
+  .card-image {
+    width: 90px;
+    height: 90px;
+    font-size: 36px;
+  }
+
+  h2 {
+    font-size: 22px;
+  }
+}
+
+/* .attribution {
+  font-size: 11px;
+  text-align: center;
+  color: hsl(220, 10%, 50%);
+  margin-top: 1.5rem;
+}
+
+.attribution a {
+  color: hsl(228, 45%, 44%);
+  font-weight: 600;
+  text-decoration: none;
+}
+
+.attribution a:hover {
+  text-decoration: underline;
+} */
